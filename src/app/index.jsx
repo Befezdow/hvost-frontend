@@ -4,9 +4,8 @@ import { Routing } from "./routing";
 
 export const App = () => (
   <>
-    <Header />
-
     <BrowserRouter>
+      <Header />
       <Routing />
     </BrowserRouter>
   </>

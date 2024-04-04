@@ -1,17 +1,16 @@
 import logo from '../../assets/logo.svg';
+import {Root, Navigation, NavLink} from './styled';
 
 export const Header = () => {
 	return (
-		<header>
+		<Root>
 			<img width={265} height={86} src={logo} alt="logo" />
-			<nav>
-				<ul>
-					<li><a href="/">Главная</a></li>
-					<li><a href="/animals">Животные</a></li>
-					<li><a href="#">Приюты</a></li>
-					<li><a href="#">Помочь</a></li>
-				</ul>
-			</nav>
-		</header>
+				<Navigation>
+					<NavLink to="/">Главная</NavLink>
+					<NavLink to="/animals">Животные</NavLink>
+					<NavLink to="#">Приюты</NavLink>
+					<NavLink to="#">Помочь</NavLink>
+				</Navigation>
+		</Root>
 	)
 }
