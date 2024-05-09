@@ -11,6 +11,7 @@ export const Root = styled.div`
 export const Text = styled.div`
   font-size: 18px;
   color: darkgray;
+  font-style: italic;
 `;
 
 export const Slider = styled(BaseSlider)`

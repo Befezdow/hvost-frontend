@@ -7,6 +7,7 @@ export const Home = () => {
 
   return (
     <Root>
+      <Text> --- Здесь будет основная информация о сервисе ---</Text>
       <Text>Slider:</Text>
       <Slider onChangeComplete={onChange} $backgroundColor='yellow' />
     </Root>

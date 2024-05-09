@@ -7,13 +7,14 @@ export const Root = styled.header`
   gap: 50px;
 
   padding: 10px;
-  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.6);
+  box-shadow: rgba(100,100,100,0.08) 0px 8px 8px 0;
 `;
 
 export const Navigation = styled.nav`
   display: flex;
   align-items: center;
   gap: 20px;
+  margin-left: auto;
 `;
 
 export const NavLink = styled(BaseNavLink)`
