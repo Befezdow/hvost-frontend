@@ -10,6 +10,7 @@ import { Root,
 	AttributeName,
 	AttributeDots,
 	AttributeValue,
+	Button,
 	Text } from './styled';
 
 export const AnimalProfile = () => {
@@ -70,7 +71,7 @@ export const AnimalProfile = () => {
 							<AttributeValue>&quot;Маленькое счастье&quot;</AttributeValue>
 						</Attribute>
 					</AttributesRow>
-					<button>Забрать домой</button>
+					<Button>Забрать домой</Button>
 				</AttributesWrapper>
 			</ProfileTop>
 			

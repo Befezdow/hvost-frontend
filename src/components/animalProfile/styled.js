@@ -65,3 +65,19 @@ export const AnimalDescription = styled.div`
 	/* font-size: 18px; */
 	max-width: 680px;
 `;
+
+export const Button = styled.button`
+	max-width: fit-content;
+	height: 48px;
+	font-size: 16px;
+	color: white;
+	padding: 0 20px;
+	margin: 30px auto;
+	background-color: #000;
+	border: 1px solid #000;
+	border-radius: 4px;
+
+	&:hover {
+		background-color: #2c2c2e;
+	}
+`;

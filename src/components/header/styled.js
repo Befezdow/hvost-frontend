@@ -6,14 +6,14 @@ export const Root = styled.header`
   align-items: center;
   gap: 50px;
 
-  padding: 10px;
+  padding: 10px 75px;
   box-shadow: rgba(100,100,100,0.08) 0px 8px 8px 0;
 `;
 
 export const Navigation = styled.nav`
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 30px;
   margin-left: auto;
 `;
 
