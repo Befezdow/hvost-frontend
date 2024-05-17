@@ -8,8 +8,8 @@ export const Header = () => {
 			<Navigation>
 				<NavLink to="/">Главная</NavLink>
 				<NavLink to="/animals">Животные</NavLink>
-				<NavLink to="#">Приюты</NavLink>
-				{/* <NavLink to="#">Помочь</NavLink> */}
+				<NavLink to="/shelters">Приюты</NavLink>
+				<NavLink to="/login">Войти</NavLink>
 			</Navigation>
 		</Root>
 	);

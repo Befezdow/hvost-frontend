@@ -2,11 +2,12 @@ import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 export const Root = styled(NavLink)`
-	padding: 15px;
+	padding: 20px;
 	width: 225px;
 	min-height: 350px;
 	display: flex;
 	flex-direction: column;
+	gap: 5px;
 	border-radius: 14px;
 	border: solid black;
 	box-shadow: rgba(100,100,100,0.1) 0px 0px 4px 4px;
@@ -38,16 +39,11 @@ export const AnimalName = styled.div`
 export const AnimalGender = styled.div`
 	padding-top: 5px;
 	font-size: 16px;
-  color: darkgray;
+  color: #888;
 `;
 
 export const AnimalAge = styled.div`
 	padding-top: 5px;
 	font-size: 16px;
-  color: darkgray;
+  color: #888;
 `;
-
-/* export const Text = styled.div`
-	font-size: 16px;
-  color: darkgray;
-`; */

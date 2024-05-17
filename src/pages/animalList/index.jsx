@@ -1,5 +1,5 @@
-import { AnimalCard } from "../../components/animalCard";
 import { Root } from "./styled";
+import { AnimalCard } from "../../components/animalCard";
 
 export const AnimalList = () => {
 	return (
@@ -14,4 +14,4 @@ export const AnimalList = () => {
 			<AnimalCard />
 		</Root>
 	);
-}
+};

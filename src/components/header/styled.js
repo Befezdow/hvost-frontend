@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { NavLink as BaseNavLink } from "react-router-dom";
 
 export const Root = styled.header`
+  min-width: 685px;
   display: flex;
   align-items: center;
   gap: 50px;
@@ -19,6 +20,10 @@ export const Navigation = styled.nav`
 
 export const NavLink = styled(BaseNavLink)`
   font-size: 18px;
-  color: black;
+  color: #000;
   text-decoration: none;
+
+  &:hover {
+    color: #888;
+  }
 `;

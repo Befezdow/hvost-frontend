@@ -1,6 +1,5 @@
 import { Root,
-	ProfileTop,
-	ProfileBottom, 
+	ProfileTop, 
 	AnimalImage,
 	AnimalName,
 	AnimalDescription, 
@@ -67,21 +66,18 @@ export const AnimalProfile = () => {
 					<AttributesRow>
 						<Attribute>
 							<AttributeName>Приют</AttributeName>
-							<AttributeDots>......................</AttributeDots>
-							<AttributeValue>&quot;Маленькое счастье&quot;</AttributeValue>
+							<AttributeDots>.....................</AttributeDots>
+							<AttributeValue>Маленькое счастье</AttributeValue>
 						</Attribute>
 					</AttributesRow>
+					<Text>Подробная информация</Text>
+					<AnimalDescription>
+						Здесь будет содержаться детализированное описание животного в свободной форме
+						- характер, привычки, особенности здоровья и тд.
+					</AnimalDescription>
 					<Button>Забрать домой</Button>
 				</AttributesWrapper>
 			</ProfileTop>
-			
-			<ProfileBottom>
-				<Text>Подробная информация</Text>
-				<AnimalDescription>
-					Здесь будет содержаться детализированное описание животного в свободной форме
-					- характер, привычки, особенности здоровья и тд.
-				</AnimalDescription>
-			</ProfileBottom>
 		</Root>
 	);
 };

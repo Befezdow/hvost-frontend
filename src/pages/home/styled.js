@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Slider as BaseSlider } from "antd";
-import { Button as BaseButton, Flex } from 'antd';
+import { Button as BaseButton } from 'antd';
 
 export const Root = styled.div`
   padding: 30px 75px;
@@ -42,7 +42,9 @@ export const Text = styled.div`
   /* font-style: italic; */
 `;
 
-export const Button = styled(BaseButton)``;
+export const Button = styled(BaseButton)`
+  font-size: 26px;
+`;
 
 export const Slider = styled(BaseSlider)`
   min-width: 300px;

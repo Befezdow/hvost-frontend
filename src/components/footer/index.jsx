@@ -11,7 +11,7 @@ export const Footer = () => {
 			<FooterLinks>
 				<Link to="/">Главная</Link>
 				<Link to="/animals">Животные</Link>
-				<Link to="#">Приюты</Link>
+				<Link to="/shelters">Приюты</Link>
 			</FooterLinks>
 
 			<Text>&copy;2024 Хвост - онлайн-сервис по подбору домашних животных из приютов</Text>

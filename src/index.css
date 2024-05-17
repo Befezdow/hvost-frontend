@@ -110,3 +110,9 @@ body {
   font-weight: 900;
   font-style: italic;
 }
+
+/* Antd redefinitions */
+
+.ant-btn {
+  height: auto;
+}
