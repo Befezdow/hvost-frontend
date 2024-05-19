@@ -1,27 +1,36 @@
 import styled from "styled-components";
+import { Button as BasedButton } from "antd";
 
 export const Root = styled.div`
 	max-width: fit-content;
+	min-width: fit-content;
+	display: flex;
+	flex-direction: row;
+	gap: 40px;
 	border: 1px solid black;
 	border-radius: 14px;
 	padding: 40px;
 	margin: 20px auto;
 `;
 
-export const ProfileTop = styled.div`
-	display: flex;
-	gap: 30px;
-	margin: auto;
-`;
-
 export const AnimalImage = styled.div``;
 
+export const AnimalInfo = styled.div`
+	max-width: calc(100vw - 770px);
+	min-width: 450px;
+`;
+
 export const AnimalName = styled.div`
+	max-width: calc(100vw - 770px);
+	min-width: 450px;
 	font-size: 25px;
+	color: #000;
+	padding-bottom: 30px;
 `;
 
 export const AttributesWrapper = styled.div`
-	max-width: 350px;
+	max-width: calc(100vw - 770px);
+	min-width: 450px;
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
@@ -40,13 +49,13 @@ export const Attribute = styled.div`
 export const AttributeName = styled.div`
 	display: flex;
 	color: #888;
-	flex: 1 0 auto; ///
+	flex: 1 0 auto;
 `;
 
 export const AttributeDots = styled.div`
 	margin-left: 8px;
 	color: #e5e5e5;
-	white-space: nowrap; ///
+	white-space: nowrap;
 `;
 
 export const AttributeValue = styled.div`
@@ -54,29 +63,31 @@ export const AttributeValue = styled.div`
 	color: #000;
 `;
 
+export const AnimalDescription = styled.div`
+	max-width: calc(100vw - 770px);
+	min-width: 450px;
+	font-size: 16px;
+	text-align: justify;
+`;
+
 export const Text = styled.div`
 	color: #888;
 	padding-top: 30px;
-	/* padding-bottom: 10px; */
+	padding-bottom: 10px;
 `;
 
-export const AnimalDescription = styled.div`
-	/* font-size: 18px; */
-	max-width: 680px;
-`;
-
-export const Button = styled.button`
+export const Button = styled(BasedButton)`
 	max-width: fit-content;
 	height: 48px;
-	font-size: 16px;
-	color: white;
-	padding: 0 20px;
+	padding: 0 30px;
 	margin: 10px auto;
-	background-color: #000;
-	border: 1px solid #000;
-	border-radius: 4px;
+	font-size: 16px;
+	background-color: black;
+	color: white;
+	font-size: 20px;
+	border-radius: 14px;
 
 	&:hover {
-		background-color: #2c2c2e;
+		background-color: #474747;
 	}
 `;

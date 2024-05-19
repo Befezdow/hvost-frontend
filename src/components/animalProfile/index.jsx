@@ -1,5 +1,5 @@
 import { Root,
-	ProfileTop, 
+	AnimalInfo, 
 	AnimalImage,
 	AnimalName,
 	AnimalDescription, 
@@ -15,10 +15,10 @@ import { Root,
 export const AnimalProfile = () => {
 	return (
 		<Root>
-			<ProfileTop>
-				<AnimalImage>
-					<img width={300} src={"https://images.unsplash.com/photo-1615349491492-d16377c236a4?q=80&w=3387&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"} />
-				</AnimalImage>
+			<AnimalImage>
+				<img width={500} src={"https://images.unsplash.com/photo-1615349491492-d16377c236a4?q=80&w=3387&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"} />
+			</AnimalImage>
+			<AnimalInfo>
 				<AttributesWrapper>
 					<AnimalName>Барсик</AnimalName>
 					<AttributesRow>
@@ -75,9 +75,9 @@ export const AnimalProfile = () => {
 						Здесь будет содержаться детализированное описание животного в свободной форме
 						- характер, привычки, особенности здоровья и тд.
 					</AnimalDescription>
-					<Button>Забрать домой</Button>
+					<Button type="primary">Забрать домой</Button>
 				</AttributesWrapper>
-			</ProfileTop>
+			</AnimalInfo>
 		</Root>
 	);
 };
