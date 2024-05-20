@@ -10,3 +10,8 @@ export const useProfileData = () => {
 
   return profileData;
 };
+
+export const useIsAuthorized = () => {
+  const profileData = useProfileData();
+  return profileData != null;
+};

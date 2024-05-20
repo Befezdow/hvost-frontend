@@ -18,12 +18,12 @@ async function onErrorInterceptor(error) {
   const status = error.response?.status;
   const { url, method } = error.response?.config ?? {};
 
-  if (url == null || !isRequestAuthorized(url, method, AUTHORIZED_ROUTES)) {
+  if (url != null && !isRequestAuthorized(url, method, AUTHORIZED_ROUTES)) {
     throw createRestError(error);
   }
 
   if (status === 401) {
-    if (AuthService.isAuthorized()) {
+    if (AuthService.isAuthorized) {
       AuthService.deauthorize();
     }
     ClientStorage.clearTokens();
@@ -55,7 +55,7 @@ async function onRequestInterceptor(clientConfig) {
     accessTokenExpiresIn == null ||
     new Date() >= new Date(accessTokenExpiresIn)
   ) {
-    if (AuthService.isAuthorized()) {
+    if (AuthService.isAuthorized) {
       AuthService.deauthorize();
     }
     ClientStorage.clearTokens();

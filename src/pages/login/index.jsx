@@ -1,4 +1,7 @@
+import { useEffect } from "react";
 import { Form } from "antd";
+import { useNavigate } from "react-router-dom";
+import { AuthService } from "../../services/auth";
 import {
   Root,
   LoginCard,
@@ -10,8 +13,19 @@ import {
 } from "./styled";
 
 export const LoginPage = () => {
-  const onSubmit = (values) => {
-    console.log("Success:", values);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (AuthService.isAuthorized) {
+      navigate("/");
+    }
+  }, [navigate]);
+
+  const onSubmit = async (values) => {
+    const { login, password } = values;
+    await AuthService.authorize(login, password);
+
+    navigate("/");
   };
 
   return (
@@ -29,7 +43,7 @@ export const LoginPage = () => {
             name="login"
             rules={[{ required: true, message: "Обязательное поле" }]}
           >
-            <InputField type="email" placeholder="Логин" />
+            <InputField type="text" placeholder="Логин" />
           </Form.Item>
           <Form.Item
             name="password"
@@ -38,7 +52,9 @@ export const LoginPage = () => {
             <InputField type="password" placeholder="Пароль" />
           </Form.Item>
           <Form.Item>
-            <SubmitButton block htmlType="submit">Войти</SubmitButton>
+            <SubmitButton block htmlType="submit">
+              Войти
+            </SubmitButton>
           </Form.Item>
         </LoginForm>
       </LoginCard>

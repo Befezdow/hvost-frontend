@@ -1,4 +1,4 @@
 import AuthService from "./auth";
-import { useProfileData } from "./hooks";
+import { useProfileData, useIsAuthorized } from "./hooks";
 
-export { AuthService, useProfileData };
+export { AuthService, useProfileData, useIsAuthorized };
