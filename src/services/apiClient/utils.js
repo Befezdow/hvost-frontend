@@ -18,7 +18,9 @@ export function createRestError(err) {
 
 export function isRequestAuthorized(url, method, authorizedRoutes) {
   for (const elem of authorizedRoutes) {
-    if (method === elem[0] && elem[1].test(url)) {
+    const methodMatched = method.toLowerCase() === elem[0].toLowerCase();
+    const urlMatched = elem[1].test(url);
+    if (methodMatched && urlMatched) {
       return true;
     }
   }

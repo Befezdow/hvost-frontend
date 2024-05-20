@@ -1,10 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import {AuthService} from './services/auth';
 import { App } from "./app";
 import "./index.css";
 
-ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+AuthService.loadProfile().finally(() => {
+  ReactDOM.createRoot(document.getElementById("root")).render(
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  );
+})
+
+
