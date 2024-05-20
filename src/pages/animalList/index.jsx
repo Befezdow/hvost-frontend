@@ -1,5 +1,6 @@
 import { Root } from "./styled";
 import { AnimalCard } from "../../components/animalCard";
+import { Pagination } from 'antd';
 
 export const AnimalList = () => {
 	return (
@@ -12,6 +13,8 @@ export const AnimalList = () => {
 			<AnimalCard />
 			<AnimalCard />
 			<AnimalCard />
+
+			<Pagination defaultCurrent={1} pageSize={10} total={23} />
 		</Root>
 	);
 };
