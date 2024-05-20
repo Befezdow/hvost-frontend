@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { Button as BasedButton } from "antd";
 
 export const Root = styled.div`
 	max-width: fit-content;
@@ -25,7 +24,7 @@ export const AnimalName = styled.div`
 	min-width: 450px;
 	font-size: 25px;
 	color: #000;
-	padding-bottom: 30px;
+	padding-bottom: 20px;
 `;
 
 export const AttributesWrapper = styled.div`
@@ -74,20 +73,4 @@ export const Text = styled.div`
 	color: #888;
 	padding-top: 30px;
 	padding-bottom: 10px;
-`;
-
-export const Button = styled(BasedButton)`
-	max-width: fit-content;
-	height: 48px;
-	padding: 0 30px;
-	margin: 10px auto;
-	font-size: 16px;
-	background-color: black;
-	color: white;
-	font-size: 20px;
-	border-radius: 14px;
-
-	&:hover {
-		background-color: #474747;
-	}
 `;

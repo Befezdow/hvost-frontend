@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Button as BaseButton } from 'antd';
 
 export const Root = styled.div`
-  height: calc(100vh - 170px);
+  min-height: calc(100vh - 170px);
   padding: 30px 75px;
   /* border: 2px solid red; */
   display: flex;

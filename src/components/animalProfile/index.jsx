@@ -9,7 +9,6 @@ import { Root,
 	AttributeName,
 	AttributeDots,
 	AttributeValue,
-	Button,
 	Text } from './styled';
 
 export const AnimalProfile = () => {
@@ -23,59 +22,82 @@ export const AnimalProfile = () => {
 					<AnimalName>Барсик</AnimalName>
 					<AttributesRow>
 						<Attribute>
-							<AttributeName>Животное</AttributeName>
-							<AttributeDots>..............</AttributeDots>
+							<AttributeName>Вид</AttributeName>
+							<AttributeDots>.....................................</AttributeDots>
 							<AttributeValue>Кот</AttributeValue>
 						</Attribute>
 					</AttributesRow>
 					<AttributesRow>
 							<Attribute>
 								<AttributeName>Пол</AttributeName>
-								<AttributeDots>.........................</AttributeDots>
+								<AttributeDots>.....................................</AttributeDots>
 								<AttributeValue>Мальчик</AttributeValue>
 							</Attribute>
 					</AttributesRow>
 					<AttributesRow>
 						<Attribute>
 							<AttributeName>Возраст</AttributeName>
-							<AttributeDots>..................</AttributeDots>
+							<AttributeDots>..............................</AttributeDots>
 							<AttributeValue>4 года</AttributeValue>
 						</Attribute>
 					</AttributesRow>
 					<AttributesRow>
 						<Attribute>
 							<AttributeName>Порода</AttributeName>
-							<AttributeDots>...................</AttributeDots>
+							<AttributeDots>...............................</AttributeDots>
 							<AttributeValue>Без породы</AttributeValue>
 						</Attribute>
 					</AttributesRow>
 					<AttributesRow>
 						<Attribute>
 							<AttributeName>Окрас</AttributeName>
-							<AttributeDots>......................</AttributeDots>
+							<AttributeDots>..................................</AttributeDots>
 							<AttributeValue>Полосатый</AttributeValue>
 						</Attribute>
 					</AttributesRow>
 					<AttributesRow>
 						<Attribute>
 							<AttributeName>Размер</AttributeName>
-							<AttributeDots>....................</AttributeDots>
+							<AttributeDots>...............................</AttributeDots>
 							<AttributeValue>Средний</AttributeValue>
 						</Attribute>
 					</AttributesRow>
-					<AttributesRow>
-						<Attribute>
-							<AttributeName>Приют</AttributeName>
-							<AttributeDots>.....................</AttributeDots>
-							<AttributeValue>Маленькое счастье</AttributeValue>
-						</Attribute>
-					</AttributesRow>
+					
 					<Text>Подробная информация</Text>
 					<AnimalDescription>
 						Здесь будет содержаться детализированное описание животного в свободной форме
 						- характер, привычки, особенности здоровья и тд.
 					</AnimalDescription>
-					<Button type="primary">Забрать домой</Button>
+					
+					<Text>Информация о приюте</Text>
+					<AttributesRow>
+						<Attribute>
+							<AttributeName>Приют</AttributeName>
+							<AttributeDots>.................................</AttributeDots>
+							<AttributeValue>Маленькое счастье</AttributeValue>
+						</Attribute>
+					</AttributesRow>
+					<AttributesRow>
+						<Attribute>
+							<AttributeName>Адрес</AttributeName>
+							<AttributeDots>..................................</AttributeDots>
+							<AttributeValue>пос. Дружба, ул. Солнечная, д. 34а</AttributeValue>
+						</Attribute>
+					</AttributesRow>
+					<AttributesRow>
+						<Attribute>
+							<AttributeName>Контактный номер</AttributeName>
+							<AttributeDots>...........</AttributeDots>
+							<AttributeValue>+7(012)345-67-89</AttributeValue>
+						</Attribute>
+					</AttributesRow>
+					<AttributesRow>
+						<Attribute>
+							<AttributeName>Сайт</AttributeName>
+							<AttributeDots>.....................................</AttributeDots>
+							<AttributeValue>www.little-happiness.com</AttributeValue>
+						</Attribute>
+					</AttributesRow>
 				</AttributesWrapper>
 			</AnimalInfo>
 		</Root>
