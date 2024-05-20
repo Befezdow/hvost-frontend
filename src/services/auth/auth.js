@@ -1,15 +1,18 @@
+import { EventEmitter } from "events";
 import ClientStorage from "../clientStorage";
 import { authorize, getProfile } from "./api";
 
 class AuthService {
   static _profileData;
+  static _eventEmitter = new EventEmitter();
 
-  static isAuthorized() {
-    return AuthService._profileData != null;
+  static _setProfileData(data) {
+    AuthService._profileData = data;
+    AuthService._eventEmitter.emit("event", data);
   }
 
   static async authorize(login, password) {
-    if (AuthService.isAuthorized()) {
+    if (AuthService.isAuthorized) {
       throw new Error("Already authorized");
     }
 
@@ -30,17 +33,18 @@ class AuthService {
   }
 
   static deauthorize() {
-    if (!AuthService.isAuthorized()) {
+    if (!AuthService.isAuthorized) {
       throw new Error("Already deauthorized");
     }
 
     // TODO: invoke method to close session on server
-    AuthService._profileData = null;
+    AuthService._setProfileData(null);
   }
 
   static async loadProfile() {
     try {
-      AuthService._profileData = await getProfile();
+      const profileData = await getProfile();
+      AuthService._setProfileData(profileData);
     } catch (error) {
       // TODO: show load profile error
       console.log(error);
@@ -50,11 +54,17 @@ class AuthService {
     return AuthService._profileData;
   }
 
-  static get profileData() {
-    if (!AuthService.isAuthorized()) {
-      throw new Error("Not authorized");
-    }
+  static onProfileDataChange(handler) {
+    AuthService._eventEmitter.on("event", handler);
 
+    return () => AuthService._eventEmitter.off("event", handler);
+  }
+
+  static get isAuthorized() {
+    return AuthService._profileData != null;
+  }
+
+  static get profileData() {
     return AuthService._profileData;
   }
 }

@@ -1,3 +1,4 @@
-import AuthService from './auth';
+import AuthService from "./auth";
+import { useProfileData } from "./hooks";
 
-export default AuthService;
+export { AuthService, useProfileData };

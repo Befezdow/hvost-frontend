@@ -1,7 +1,7 @@
 import axios from "axios";
 import config from "../../config";
 import ClientStorage from "../clientStorage";
-import AuthService from "../auth";
+import { AuthService } from "../auth";
 import { createRestError, isRequestAuthorized } from "./utils";
 
 const AUTHORIZED_ROUTES = [

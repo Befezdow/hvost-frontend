@@ -8,7 +8,7 @@ export const Root = styled.header`
   gap: 50px;
 
   padding: 10px 75px;
-  box-shadow: rgba(100,100,100,0.08) 0px 8px 8px 0;
+  box-shadow: rgba(100, 100, 100, 0.08) 0px 8px 8px 0;
 `;
 
 export const Navigation = styled.nav`
