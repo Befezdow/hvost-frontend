@@ -1,4 +1,5 @@
-import {ConfigProvider} from 'antd';
+import { ConfigProvider } from 'antd';
+import ruRU from 'antd/locale/ru_RU';
 import { BrowserRouter } from "react-router-dom";
 import { Root } from "./styled";
 import { Header } from "../components/header";
@@ -7,6 +8,7 @@ import { Routing } from "./routing";
 
 export const App = () => (
   <ConfigProvider
+    locale={ruRU}
     theme={{
       token: {
         // Seed Token
