@@ -44,7 +44,7 @@ export const ShelterAddress = styled.div`
 	color: black;
 `;
 
-export const ShelterDescription = styled.div`
+export const ShelterPhoneNumber = styled.div`
 	font-size: 16px;
 	color: black;
 `;

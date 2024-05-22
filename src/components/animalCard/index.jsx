@@ -1,3 +1,4 @@
+import mockImage from "../../assets/images/mock_animal_image.jpg";
 import { mapAge, mapPhotoSrcs } from "../../utils";
 import {
   Root,
@@ -18,7 +19,7 @@ export const AnimalCard = ({
 }) => {
   const mappedGender = gender === "BOY" ? "Мальчик" : "Девочка";
   const mappedAge = mapAge(minBirthDate, maxBirthDate);
-  const mappedPhoto = mapPhotoSrcs(photos)[0];
+  const mappedPhoto = mapPhotoSrcs(photos, mockImage)[0];
 
   return (
     <Root to={`/animals/${id}`}>

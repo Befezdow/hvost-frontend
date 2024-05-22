@@ -1,18 +1,30 @@
-import { Root, ShelterImage, ShelterInfo, ShelterName, ShelterAddress, Text, ShelterDescription } from "./styled";
+import mockImage from "../../assets/images/mock_shelter_image.jpg";
+import { mapPhotoSrcs } from "../../utils";
+import {
+  Root,
+  ShelterImage,
+  ShelterInfo,
+  ShelterName,
+  ShelterAddress,
+  Text,
+  ShelterPhoneNumber,
+} from "./styled";
 
-export const ShelterCard = () => {
-	return (
-		<Root to="/shelters/1">
-			<ShelterImage>
-				<img height={200} src="https://dynamic.brandcrowd.com/asset/logo/714ca687-103d-4d63-99ae-10512f983d60/insta-square?logoTemplateVersion=1&v=638321033099730000"/>
-			</ShelterImage>
-			<ShelterInfo>
-				<ShelterName>Маленькое счастье</ShelterName>
-				<Text>Адрес</Text>
-				<ShelterAddress>пос. Дружба, ул. Солнечная, д. 34а</ShelterAddress>
-				<Text>Деятельность</Text>
-				<ShelterDescription>Приют для кошек и собак</ShelterDescription>
-			</ShelterInfo>
-		</Root>
-	);
+export const ShelterCard = ({ id, name, address, phoneNumber, photos }) => {
+  const mappedPhoto = mapPhotoSrcs(photos, mockImage)[0];
+
+  return (
+    <Root to={`/shelters/${id}`}>
+      <ShelterImage>
+        <img height={200} src={mappedPhoto} alt="Shelter photo" />
+      </ShelterImage>
+      <ShelterInfo>
+        <ShelterName>{name}</ShelterName>
+        <Text>Адрес</Text>
+        <ShelterAddress>{address}</ShelterAddress>
+        <Text>Номер телефона</Text>
+        <ShelterPhoneNumber>{phoneNumber}</ShelterPhoneNumber>
+      </ShelterInfo>
+    </Root>
+  );
 };

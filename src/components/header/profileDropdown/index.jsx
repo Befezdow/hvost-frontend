@@ -8,7 +8,7 @@ const { useToken } = theme;
 const getProfileMenuItems = (handleLogout) => [
   {
     key: "1",
-    label: <NavLink to="/shelters">Личный кабинет</NavLink>,
+    label: <NavLink to="/personalAccount">Личный кабинет</NavLink>,
   },
   {
     key: "2",

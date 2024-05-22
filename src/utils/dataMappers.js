@@ -63,9 +63,9 @@ export const mapSpecies = (species) => {
   return "Ошибка";
 };
 
-export const mapPhotoSrcs = (photos) => {
+export const mapPhotoSrcs = (photos, mockImage) => {
   if (photos.length === 0) {
-    return ["https://images.unsplash.com/photo-1615349491492-d16377c236a4"];
+    return [mockImage];
   }
 
   return photos.map((elem) => `data:image/png;base64,${elem}`);

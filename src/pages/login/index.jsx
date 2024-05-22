@@ -17,7 +17,7 @@ export const LoginPage = () => {
 
   useEffect(() => {
     if (AuthService.isAuthorized) {
-      navigate("/");
+      navigate("/personalAccount");
     }
   }, [navigate]);
 
@@ -25,7 +25,7 @@ export const LoginPage = () => {
     const { login, password } = values;
     await AuthService.authorize(login, password);
 
-    navigate("/");
+    navigate("/personalAccount");
   };
 
   return (
