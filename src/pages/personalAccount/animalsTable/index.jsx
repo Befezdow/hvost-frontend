@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { Pagination, Button, Table, Typography } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import { Loadable } from "../../../components/loadable";
@@ -9,39 +9,6 @@ import { AddAnimalModal } from "./addAnimalModal";
 import { DeleteAnimalModal } from "./deleteAnimalModal";
 import { getColumns } from "./utils";
 import { Root, HeaderWrapper } from "./styled";
-
-const data = [
-  {
-    key: "1",
-    name: "Барсик",
-    gender: "Мальчик",
-    species: "Кот",
-    age: "4 года",
-    breed: "Без породы",
-    color: "Полосатый",
-    size: "Средний",
-  },
-  {
-    key: "2",
-    name: "Луна",
-    gender: "Девочка",
-    species: "Собака",
-    age: "3 года",
-    breed: "Без породы",
-    color: "Белый",
-    size: "Средний",
-  },
-  {
-    key: "3",
-    name: "Киси-Миси",
-    gender: "Девочка",
-    species: "Кот",
-    age: "5 лет",
-    breed: "Сиамская",
-    color: "Бежевый",
-    size: "Средний",
-  },
-];
 
 const PAGE_SIZE = 20;
 const INITIAL_DATA = { list: [], totalAmount: 0 };
@@ -102,12 +69,16 @@ export const AnimalsTable = () => {
     setCurrentPage(page);
   };
 
+  const dataSource = useMemo(
+    () => (data?.list ?? []).map((elem) => ({ key: elem.id, ...elem })),
+    [data]
+  );
   const columns = getColumns(openDeleteModal);
   const tableLayout =
     data.list.length === 0 ? (
       <EmptyData message="Список животных пуст :(" />
     ) : (
-      <Table columns={columns} dataSource={data.list} pagination={false} />
+      <Table columns={columns} dataSource={dataSource} pagination={false} />
     );
 
   return (
