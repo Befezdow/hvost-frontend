@@ -23,7 +23,7 @@ const onImagePreview = async (file) => {
 };
 
 export const ImageUploader = (props) => (
-  <ImgCrop rotationSlider aspect={3/4}>
+  <ImgCrop rotationSlider aspect={3 / 4} quality={1}>
     <Upload
       {...props}
       customRequest={dummyRequest}

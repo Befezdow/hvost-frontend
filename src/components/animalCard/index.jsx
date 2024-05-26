@@ -24,7 +24,7 @@ export const AnimalCard = ({
   return (
     <Root to={`/animals/${id}`}>
       <AnimalImage>
-        <img width={225} src={mappedPhoto} alt="Animal photo" />
+        <img width={195} height={260} src={mappedPhoto} alt="Animal photo" />
       </AnimalImage>
       <AnimalInfo>
         <AnimalName>{nickname}</AnimalName>

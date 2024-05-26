@@ -24,6 +24,9 @@ export const Root = styled(NavLink)`
 
 export const AnimalImage = styled.div`
 	flex: 0 0 220px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 `;
 
 export const AnimalInfo = styled.div`

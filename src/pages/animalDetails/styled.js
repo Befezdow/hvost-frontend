@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Carousel } from "antd";
 
 export const Root = styled.div`
   max-width: fit-content;
@@ -10,6 +11,11 @@ export const Root = styled.div`
   border-radius: 14px;
   padding: 40px;
   margin: 20px auto;
+`;
+
+export const ImagesCarousel = styled(Carousel)`
+  width: 300px;
+  height: 400px;
 `;
 
 export const AnimalImage = styled.div``;

@@ -5,11 +5,31 @@ import { ImageUploader } from "../../../../components/imageUploader";
 import { createAnimal } from "../../../../services/animals";
 import { FieldName, AddAnimalForm, SubmitButton } from "./styled";
 
+const readFileAsBase64 = async (file) => {
+  return new Promise((res, rej) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = function () {
+      res(reader.result);
+    };
+    reader.onerror = (error) => {
+      rej(error);
+    };
+  });
+};
+
 export const AddAnimalModal = ({ isOpen, onFinish, onClose }) => {
   const [form] = Form.useForm();
   const [isPending, setIsPending] = useState(false);
 
   const handleAdd = async (data) => {
+    const photos = [];
+    for (const elem of data.photos) {
+      const base64Data = await readFileAsBase64(elem.originFileObj);
+      const [mime, data] = base64Data.replace("data:", "").split(";base64,");
+      photos.push({ mime, data });
+    }
+
     const animal = {
       nickname: data.nickname,
       gender: data.gender,
@@ -20,7 +40,7 @@ export const AddAnimalModal = ({ isOpen, onFinish, onClose }) => {
       color: data.color,
       size: data.size,
       description: data.description,
-      photos: (data.photos ?? []).map((elem) => elem.thumbUrl),
+      photos,
     };
 
     setIsPending(true);
@@ -192,7 +212,7 @@ export const AddAnimalModal = ({ isOpen, onFinish, onClose }) => {
             <Input.TextArea
               rows={4}
               placeholder="Здесь вы можете указать подробные сведения о животном - особенности здоровья, характер, привычки и др."
-              maxLength={6}
+              maxLength={800}
             />
           </Form.Item>
         </div>

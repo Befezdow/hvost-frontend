@@ -1,11 +1,12 @@
 import { AnimalsTable } from "./animalsTable";
-import { ShelterTabs } from './styled';
+import { ShelterInfo } from "./shelterInfo";
+import { ShelterTabs } from "./styled";
 
 const items = [
   {
     key: "shelterInfo",
     label: "Информация о приюте",
-    children: "Информация о приюте",
+    children: <ShelterInfo />,
   },
   {
     key: "animalsList",

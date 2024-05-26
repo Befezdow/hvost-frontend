@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
-import { Carousel } from "antd";
 import mockImage from "../../assets/images/mock_animal_image.jpg";
 import { Loadable } from "../../components/loadable";
 import { getAnimalDetails } from "../../services/animals";
@@ -24,6 +23,7 @@ import {
   AttributeDots,
   AttributeValue,
   Text,
+  ImagesCarousel,
 } from "./styled";
 
 export const AnimalDetails = () => {
@@ -74,13 +74,13 @@ export const AnimalDetails = () => {
   return (
     <Loadable isLoading={isLoading}>
       <Root>
-        <Carousel effect="fade">
-          <AnimalImage>
-            {imageSrcs.map((elem, index) => (
-              <img key={index} width={500} src={elem} />
-            ))}
-          </AnimalImage>
-        </Carousel>
+        <ImagesCarousel effect="fade" arrows>
+          {imageSrcs.map((elem, index) => (
+            <AnimalImage key={index}>
+              <img width={300} height={400} src={elem} />
+            </AnimalImage>
+          ))}
+        </ImagesCarousel>
         <AnimalInfo>
           <AttributesWrapper>
             <AnimalName>{nickname}</AnimalName>

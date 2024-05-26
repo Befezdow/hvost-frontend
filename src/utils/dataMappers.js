@@ -68,5 +68,5 @@ export const mapPhotoSrcs = (photos, mockImage) => {
     return [mockImage];
   }
 
-  return photos.map((elem) => `data:image/png;base64,${elem}`);
+  return photos.map((elem) => `data:${elem.mime};base64,${elem.data}`);
 };

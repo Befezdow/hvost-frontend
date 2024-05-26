@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router";
-import mockImage from "../../assets/images/mock_shelter_image.jpg";
-import { Loadable } from "../../components/loadable";
-import { getShelterDetails } from "../../services/shelters";
-import { mapPhotoSrcs } from "../../utils/dataMappers";
+import mockImage from "../../../assets/images/mock_shelter_image.jpg";
+import { Loadable } from "../../../components/loadable";
+import { useProfileData } from "../../../services/auth";
+import { getShelterDetails } from "../../../services/shelters";
+import { mapPhotoSrcs } from "../../../utils/dataMappers";
 import {
   Root,
   ShelterImage,
@@ -20,21 +20,16 @@ import {
   ImagesCarousel,
 } from "./styled";
 
-export const ShelterDetails = () => {
-  const navigate = useNavigate();
-  let { id } = useParams();
+export const ShelterInfo = () => {
+  const profileData = useProfileData();
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    if (!id) {
-      navigate({ pathname: `../` });
-    }
-
     async function fetchData() {
       setIsLoading(true);
       try {
-        const result = await getShelterDetails(id);
+        const result = await getShelterDetails(profileData.id);
         setData(result);
       } catch (error) {
         // TODO: show error
@@ -44,7 +39,7 @@ export const ShelterDetails = () => {
     }
 
     fetchData();
-  }, [id, navigate]);
+  }, [profileData]);
 
   const name = data?.name ?? "-";
   const description = data?.description ?? "-";
@@ -80,7 +75,7 @@ export const ShelterDetails = () => {
             <AttributesRow>
               <Attribute>
                 <AttributeName>Контактный номер</AttributeName>
-                <AttributeDots>...........</AttributeDots>
+                <AttributeDots>.......</AttributeDots>
                 <AttributeValue>{phoneNumber}</AttributeValue>
               </Attribute>
             </AttributesRow>

@@ -2,15 +2,9 @@ import styled from "styled-components";
 import { Carousel } from "antd";
 
 export const Root = styled.div`
-	max-width: fit-content;
-	min-width: fit-content;
 	display: flex;
 	flex-direction: row;
 	gap: 40px;
-	border: 1px solid black;
-	border-radius: 14px;
-	padding: 40px;
-	margin: 20px auto;
 `;
 
 export const ImagesCarousel = styled(Carousel)`
