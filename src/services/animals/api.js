@@ -14,3 +14,13 @@ export async function getAnimalDetails(animalId) {
   const path = `/animals/${animalId}`;
   return (await apiClient.get(path)).data;
 }
+
+export async function createAnimal(animal) {
+  const path = "/animals/create";
+  return (await apiClient.post(path, animal)).data;
+}
+
+export async function deleteAnimal(animalId) {
+  const path = `/animals/${animalId}`;
+  return (await apiClient.delete(path)).data;
+}

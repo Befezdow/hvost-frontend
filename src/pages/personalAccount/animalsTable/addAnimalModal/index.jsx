@@ -1,139 +1,202 @@
 import { useState } from "react";
-import { Upload, Input, Select, DatePicker, Modal } from "antd";
-import ImgCrop from "antd-img-crop";
-import { DescriptionText, Row, FieldName } from "./styled";
+import { Input, Select, DatePicker, Modal, Form, Button } from "antd";
+import { UploadOutlined } from "@ant-design/icons";
+import { ImageUploader } from "../../../../components/imageUploader";
+import { createAnimal } from "../../../../services/animals";
+import { FieldName, AddAnimalForm, SubmitButton } from "./styled";
 
-export const AddAnimalModal = ({ isOpen, onSubmit, onCancel }) => {
-  const [fileList, setFileList] = useState([
-    {
-      uid: "-1",
-      name: "image.png",
-      status: "done",
-      url: "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
-    },
-  ]);
+export const AddAnimalModal = ({ isOpen, onFinish, onClose }) => {
+  const [form] = Form.useForm();
+  const [isPending, setIsPending] = useState(false);
 
-  const onImagePreview = async (file) => {
-    let src = file.url;
-    if (!src) {
-      src = await new Promise((resolve) => {
-        const reader = new FileReader();
-        reader.readAsDataURL(file.originFileObj);
-        reader.onload = () => resolve(reader.result);
-      });
+  const handleAdd = async (data) => {
+    const animal = {
+      nickname: data.nickname,
+      gender: data.gender,
+      species: data.species,
+      minBirthDate: new Date(data.birthDates[0]).toISOString(),
+      maxBirthDate: new Date(data.birthDates[1]).toISOString(),
+      breed: data.breed,
+      color: data.color,
+      size: data.size,
+      description: data.description,
+      photos: (data.photos ?? []).map((elem) => elem.thumbUrl),
+    };
+
+    setIsPending(true);
+    try {
+      await createAnimal(animal);
+      form.resetFields();
+      onFinish();
+    } catch (error) {
+      // TODO: show error
+      console.log(error);
     }
-    const image = new Image();
-    image.src = src;
-    const imgWindow = window.open(src);
-    imgWindow?.document.write(image.outerHTML);
+    setIsPending(false);
+  };
+
+  const handleClose = () => {
+    form.resetFields();
+    onClose();
   };
 
   return (
     <Modal
       title="Добавить информацию о животном"
-      cancelText="Отменить"
-      okText="Добавить"
       open={isOpen}
-      onOk={onSubmit}
-      onCancel={onCancel}
-    >
-      <DescriptionText>
-        Вы можете добавить до 5 фотографий животного:
-      </DescriptionText>
-      <ImgCrop rotationSlider>
-        <Upload
-          action="https://660d2bd96ddfa2943b33731c.mockapi.io/api/upload"
-          listType="picture-card"
-          fileList={fileList}
-          onChange={({ fileList }) => setFileList(fileList)}
-          onPreview={onImagePreview}
+      onCancel={handleClose}
+      footer={[
+        <Button key="cancel" onClick={() => handleClose()}>
+          Отменить
+        </Button>,
+        <SubmitButton
+          key="submit"
+          htmlType="submit"
+          onClick={() => form.submit()}
+          disabled={isPending}
         >
-          {fileList.length < 5 && "+ Загрузить"}
-        </Upload>
-      </ImgCrop>
-      <Row>
-        <FieldName>Кличка:</FieldName>
-        <Input placeholder="Укажите имя животного" />
-      </Row>
-      <Row>
-        <FieldName>Вид животного:</FieldName>
-        <Select
-          placeholder="Выберите вид животного"
-          style={{
-            width: 267,
-          }}
-          options={[
-            {
-              value: "CAT",
-              label: "Кот",
-            },
-            {
-              value: "DOG",
-              label: "Собака",
-            },
-          ]}
-        />
-      </Row>
-      <Row>
-        <FieldName>Пол:</FieldName>
-        <Select
-          placeholder="Выберите пол животного"
-          style={{
-            width: 267,
-          }}
-          options={[
-            {
-              value: "BOY",
-              label: "Мальчик",
-            },
-            {
-              value: "GIRL",
-              label: "Девочка",
-            },
-          ]}
-        />
-      </Row>
-      <Row>
-        <FieldName>Приблизительная дата рождения:</FieldName>
-        <DatePicker.RangePicker placeholder={["Первая дата", "Вторая дата"]} />
-      </Row>
-      <Row>
-        <FieldName>Порода:</FieldName>
-        <Input placeholder="Без породы / Есть порода" />
-      </Row>
-      <Row>
-        <FieldName>Окрас:</FieldName>
-        <Input placeholder="Цвет животного" />
-      </Row>
-      <Row>
-        <FieldName>Размер:</FieldName>
-        <Select
-          placeholder="Выберите размер"
-          style={{
-            width: 267,
-          }}
-          options={[
-            {
-              value: "LITTLE",
-              label: "Маленький",
-            },
-            {
-              value: "MIDDLE",
-              label: "Средний",
-            },
-            {
-              value: "BIG",
-              label: "Большой",
-            },
-          ]}
-        />
-      </Row>
-      <DescriptionText>Подробная информация:</DescriptionText>
-      <Input.TextArea
-        rows={4}
-        placeholder="Здесь вы можете указать подробные сведения о животном - особенности здоровья, характер, привычки и др."
-        maxLength={6}
-      />
+          Добавить
+        </SubmitButton>,
+      ]}
+    >
+      <AddAnimalForm form={form} onFinish={handleAdd}>
+        <div>
+          <FieldName>
+            Фото (вы можете добавить до 5 фотографий животного):
+          </FieldName>
+          <Form.Item name="photos" getValueFromEvent={(e) => e.fileList}>
+            <ImageUploader listType="picture-card" maxCount={5}>
+              <UploadOutlined />
+            </ImageUploader>
+          </Form.Item>
+        </div>
+
+        <div>
+          <FieldName>Кличка:</FieldName>
+          <Form.Item
+            name="nickname"
+            rules={[{ required: true, message: "Обязательное поле" }]}
+          >
+            <Input type="text" placeholder="Укажите имя животного" />
+          </Form.Item>
+        </div>
+
+        <div>
+          <FieldName>Вид животного:</FieldName>
+          <Form.Item
+            name="species"
+            rules={[{ required: true, message: "Обязательное поле" }]}
+          >
+            <Select
+              placeholder="Выберите вид животного"
+              options={[
+                {
+                  value: "CAT",
+                  label: "Кот",
+                },
+                {
+                  value: "DOG",
+                  label: "Собака",
+                },
+              ]}
+            />
+          </Form.Item>
+        </div>
+
+        <div>
+          <FieldName>Пол животного:</FieldName>
+          <Form.Item
+            name="gender"
+            rules={[{ required: true, message: "Обязательное поле" }]}
+          >
+            <Select
+              placeholder="Выберите пол животного"
+              options={[
+                {
+                  value: "BOY",
+                  label: "Мальчик",
+                },
+                {
+                  value: "GIRL",
+                  label: "Девочка",
+                },
+              ]}
+            />
+          </Form.Item>
+        </div>
+
+        <div>
+          <FieldName>Приблизительная дата рождения:</FieldName>
+          <Form.Item
+            name="birthDates"
+            rules={[{ required: true, message: "Обязательное поле" }]}
+          >
+            <DatePicker.RangePicker
+              placeholder={["Первая дата", "Вторая дата"]}
+            />
+          </Form.Item>
+        </div>
+
+        <div>
+          <FieldName>Порода:</FieldName>
+          <Form.Item
+            name="breed"
+            rules={[{ required: true, message: "Обязательное поле" }]}
+          >
+            <Input type="text" placeholder="Порода / без породы" />
+          </Form.Item>
+        </div>
+
+        <div>
+          <FieldName>Окрас:</FieldName>
+          <Form.Item
+            name="color"
+            rules={[{ required: true, message: "Обязательное поле" }]}
+          >
+            <Input type="text" placeholder="Цвет / окрас животного" />
+          </Form.Item>
+        </div>
+
+        <div>
+          <FieldName>Размер:</FieldName>
+          <Form.Item
+            name="size"
+            rules={[{ required: true, message: "Обязательное поле" }]}
+          >
+            <Select
+              placeholder="Выберите размер"
+              options={[
+                {
+                  value: "SMALL",
+                  label: "Маленький",
+                },
+                {
+                  value: "MEDIUM",
+                  label: "Средний",
+                },
+                {
+                  value: "LARGE",
+                  label: "Большой",
+                },
+              ]}
+            />
+          </Form.Item>
+        </div>
+
+        <div>
+          <FieldName>Подробная информация:</FieldName>
+          <Form.Item
+            name="description"
+            rules={[{ required: true, message: "Обязательное поле" }]}
+          >
+            <Input.TextArea
+              rows={4}
+              placeholder="Здесь вы можете указать подробные сведения о животном - особенности здоровья, характер, привычки и др."
+              maxLength={6}
+            />
+          </Form.Item>
+        </div>
+      </AddAnimalForm>
     </Modal>
   );
 };

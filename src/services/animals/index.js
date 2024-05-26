@@ -1,1 +1,1 @@
-export { getAnimalList, getAnimalDetails } from "./api";
+export { getAnimalList, getAnimalDetails, createAnimal, deleteAnimal } from "./api";

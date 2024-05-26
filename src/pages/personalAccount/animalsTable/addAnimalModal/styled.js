@@ -1,7 +1,10 @@
 import styled from "styled-components";
+import { Form, Button } from "antd";
 
-export const DescriptionText = styled.div`
-  padding: 10px 0;
+export const AddAnimalForm = styled(Form)`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 `;
 
 export const Row = styled.div`
@@ -13,7 +16,16 @@ export const Row = styled.div`
 `;
 
 export const FieldName = styled.div`
-  min-width: 200px;
-  max-width: 200px;
   font-size: 14px;
+  margin-bottom: 5px;
+`;
+
+export const SubmitButton = styled(Button)`
+  background-color: black;
+  color: white;
+
+  &:hover {
+    color: white !important;
+    background-color: #474747 !important;
+  }
 `;

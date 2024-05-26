@@ -13,32 +13,38 @@ import { Root, HeaderWrapper } from "./styled";
 const PAGE_SIZE = 20;
 const INITIAL_DATA = { list: [], totalAmount: 0 };
 
+async function fetchData(setIsLoading, currentPage, profileId) {
+  const offset = PAGE_SIZE * (currentPage - 1);
+  const limit = PAGE_SIZE;
+
+  setIsLoading(true);
+  let result;
+  try {
+    result = await getAnimalList(offset, limit, profileId);
+  } catch (error) {
+    // TODO: show error
+    console.log(error);
+  }
+  setIsLoading(false);
+  return result;
+}
+
 export const AnimalsTable = () => {
   const profileData = useProfileData();
 
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
-  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [animalIdToDelete, setAnimalIdToDelete] = useState(null);
+
   const [currentPage, setCurrentPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState(INITIAL_DATA);
 
+  const loadData = (page, profileId) => {
+    fetchData(setIsLoading, page, profileId).then((result) => setData(result));
+  };
+
   useEffect(() => {
-    async function fetchData() {
-      const offset = PAGE_SIZE * (currentPage - 1);
-      const limit = PAGE_SIZE;
-
-      setIsLoading(true);
-      try {
-        const result = await getAnimalList(offset, limit, profileData.id);
-        setData(result);
-      } catch (error) {
-        // TODO: show error
-        console.log(error);
-      }
-      setIsLoading(false);
-    }
-
-    fetchData();
+    loadData(currentPage, profileData.id);
   }, [currentPage, profileData]);
 
   const openAddModal = () => {
@@ -49,24 +55,24 @@ export const AnimalsTable = () => {
   };
 
   const openDeleteModal = (id) => {
-    console.log(id);
-    setIsDeleteModalOpen(true);
+    setAnimalIdToDelete(id);
   };
   const closeDeleteModal = () => {
-    setIsDeleteModalOpen(false);
-  };
-
-  const handleAdd = (data) => {
-    console.log(data);
-    setIsAddModalOpen(false);
-  };
-  const handleDelete = (data) => {
-    console.log(data);
-    setIsDeleteModalOpen(false);
+    setAnimalIdToDelete(null);
   };
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
+  };
+
+  const handleAddFinish = () => {
+    loadData(currentPage, profileData.id);
+    closeAddModal();
+  };
+
+  const handleDeleteFinish = () => {
+    loadData(currentPage, profileData.id);
+    closeDeleteModal();
   };
 
   const dataSource = useMemo(
@@ -101,13 +107,13 @@ export const AnimalsTable = () => {
 
       <AddAnimalModal
         isOpen={isAddModalOpen}
-        onSubmit={handleAdd}
-        onCancel={closeAddModal}
+        onFinish={handleAddFinish}
+        onClose={closeAddModal}
       />
       <DeleteAnimalModal
-        isOpen={isDeleteModalOpen}
-        onSubmit={handleDelete}
-        onCancel={closeDeleteModal}
+        animalId={animalIdToDelete}
+        onFinish={handleDeleteFinish}
+        onClose={closeDeleteModal}
       />
     </Root>
   );
